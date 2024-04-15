@@ -2,6 +2,9 @@ package entity;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -87,6 +90,17 @@ public class Cliente {
 
     public void setNif(int nif) {
         this.nif = nif;
+    }
+
+    @OneToMany(mappedBy = "cliente")
+    private Set<Faturacompra> faturasCompra = new HashSet<>();
+
+    public Set<Faturacompra> getFaturasCompra() {
+        return faturasCompra;
+    }
+
+    public void setFaturasCompra(Set<Faturacompra> faturasCompra) {
+        this.faturasCompra = faturasCompra;
     }
 
     @Override
